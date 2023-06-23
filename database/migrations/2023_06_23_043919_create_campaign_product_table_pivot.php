@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('campaign_product', function (Blueprint $table) {
             $table->unsignedBigInteger('campaign_id');
             $table->unsignedBigInteger('product_id');
-            $table->foreign('campaign_id')->references('id_campaign')->on('campaigns')->onDelete('cascade');
-            $table->foreign('product_id')->references('id_product')->on('products')->onDelete('cascade');
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->primary(['campaign_id', 'product_id']);
         });
     }
