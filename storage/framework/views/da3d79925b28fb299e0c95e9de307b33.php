@@ -137,10 +137,10 @@
 
         <div class="flex items-center justify-end mt-4">
             <?php if(Route::has('password.request')): ?>
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="<?php echo e(route('password.request')); ?>">
-                    <?php echo e(__('Forgot your password?')); ?>
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="<?php echo e(route('password.request')); ?>">
+                <?php echo e(__('Forgot your password?')); ?>
 
-                </a>
+            </a>
             <?php endif; ?>
 
             <?php if (isset($component)) { $__componentOriginal71c6471fa76ce19017edc287b6f4508c = $component; } ?>
@@ -167,5 +167,4 @@
 <?php if (isset($__componentOriginal69dc84650370d1d4dc1b42d016d7226b)): ?>
 <?php $component = $__componentOriginal69dc84650370d1d4dc1b42d016d7226b; ?>
 <?php unset($__componentOriginal69dc84650370d1d4dc1b42d016d7226b); ?>
-<?php endif; ?>
-<?php /**PATH C:\xampp\htdocs\aseupan-kitchen\resources\views/auth/login.blade.php ENDPATH**/ ?>
+<?php endif; ?><?php /**PATH C:\xampp\htdocs\aseupan-kitchen\resources\views/auth/login.blade.php ENDPATH**/ ?>
