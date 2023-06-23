@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\aseupan-kitchen\resources\views/admin/orders.blade.php ENDPATH**/ ?>

@@ -9,39 +9,28 @@
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('header', null, []); ?> 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <?php echo e(__('Admin\'s Dashboard')); ?>
+            <?php echo e(__('Profile')); ?>
 
         </h2>
      <?php $__env->endSlot(); ?>
 
-    <style>
-        .menu-button {
-            display: block;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            margin-bottom: 10px;
-        }
-
-        .menu-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <?php echo e(__("Selamat datang di Dashboard Admin!")); ?>
-
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    <?php echo $__env->make('profile.partials.update-profile-information-form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </div>
-                <div class="menu-container">
-                    <a href="<?php echo e(route('admin.index')); ?>" class="menu-button">Manage Products</a>
-                    <a href="<?php echo e(route('admin.create')); ?>" class="menu-button">Create Product</a>
-                    <a href="<?php echo e(route('admin.orders')); ?>" class="menu-button">Manage Orders</a>
-                    <a href="<?php echo e(route('admin.users')); ?>" class="menu-button">Manage Users</a>
-                    <!-- Add more menu items as needed -->
+            </div>
+
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    <?php echo $__env->make('profile.partials.update-password-form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                </div>
+            </div>
+
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    <?php echo $__env->make('profile.partials.delete-user-form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </div>
             </div>
         </div>
@@ -51,4 +40,5 @@
 <?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?><?php /**PATH C:\xampp\htdocs\aseupan-kitchen\resources\views/dashboardAdmin.blade.php ENDPATH**/ ?>
+<?php endif; ?>
+<?php /**PATH C:\xampp\htdocs\aseupan-kitchen\resources\views/profile/edit.blade.php ENDPATH**/ ?>
