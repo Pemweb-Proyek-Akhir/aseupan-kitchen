@@ -1,6 +1,6 @@
 <?php
 
-// Model Order tes
+// Model Order
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
