@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('campaigns', function (Blueprint $table) {
+        Schema::create('banner_campaign', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('target');
-            $table->string('status')->default('ongoing');
+            $table->unsignedBigInteger('campaign_id');
+            $table->string('url');
+            $table->foreign('campaign_id')->references('id')->on('campaigns');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('campaigns');
+        Schema::dropIfExists('banner_campaign');
     }
 };
