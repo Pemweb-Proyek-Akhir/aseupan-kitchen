@@ -5052,3 +5052,87 @@
 #41 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\code\\\\Backend...')
 #42 {main}
 "} 
+[2023-06-24 17:30:43] local.ERROR: Trait "Laravel\Lumen\Auth\Authorizable" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"Laravel\\Lumen\\Auth\\Authorizable\" not found at C:\\code\\Backend\\aseupan-kitchen\\app\\Models\\User.php:12)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-24 17:32:13] local.ERROR: Class App\Models\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Illuminate\Contracts\Auth\Access\Authorizable::can) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Class App\\Models\\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Illuminate\\Contracts\\Auth\\Access\\Authorizable::can) at C:\\code\\Backend\\aseupan-kitchen\\app\\Models\\User.php:11)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-24 17:32:18] local.ERROR: Class App\Models\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Illuminate\Contracts\Auth\Access\Authorizable::can) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Class App\\Models\\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Illuminate\\Contracts\\Auth\\Access\\Authorizable::can) at C:\\code\\Backend\\aseupan-kitchen\\app\\Models\\User.php:11)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-24 17:33:00] local.ERROR: Class App\Models\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Illuminate\Contracts\Auth\Access\Authorizable::can) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Class App\\Models\\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Illuminate\\Contracts\\Auth\\Access\\Authorizable::can) at C:\\code\\Backend\\aseupan-kitchen\\app\\Models\\User.php:11)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-24 17:33:26] local.ERROR: App\Models\User cannot implement Illuminate\Database\Eloquent\Model - it is not an interface {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): App\\Models\\User cannot implement Illuminate\\Database\\Eloquent\\Model - it is not an interface at C:\\code\\Backend\\aseupan-kitchen\\app\\Models\\User.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-24 17:33:42] local.ERROR: App\Models\User cannot implement Illuminate\Database\Eloquent\Model - it is not an interface {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): App\\Models\\User cannot implement Illuminate\\Database\\Eloquent\\Model - it is not an interface at C:\\code\\Backend\\aseupan-kitchen\\app\\Models\\User.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-24 17:40:09] local.ERROR: App\Models\User cannot implement Illuminate\Foundation\Auth\User - it is not an interface {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): App\\Models\\User cannot implement Illuminate\\Foundation\\Auth\\User - it is not an interface at C:\\code\\Backend\\aseupan-kitchen\\app\\Models\\User.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-24 17:40:19] local.ERROR: App\Models\User cannot use Illuminate\Foundation\Auth\User - it is not a trait {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): App\\Models\\User cannot use Illuminate\\Foundation\\Auth\\User - it is not a trait at C:\\code\\Backend\\aseupan-kitchen\\app\\Models\\User.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-24 17:41:42] local.ERROR: Class App\Models\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Illuminate\Contracts\Auth\Access\Authorizable::can) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Class App\\Models\\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Illuminate\\Contracts\\Auth\\Access\\Authorizable::can) at C:\\code\\Backend\\aseupan-kitchen\\app\\Models\\User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-24 17:42:02] local.ERROR: Class App\Models\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Illuminate\Contracts\Auth\Access\Authorizable::can) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Class App\\Models\\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Illuminate\\Contracts\\Auth\\Access\\Authorizable::can) at C:\\code\\Backend\\aseupan-kitchen\\app\\Models\\User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2023-06-24 17:43:56] local.ERROR: Attempt to read property "password" on null {"exception":"[object] (ErrorException(code: 0): Attempt to read property \"password\" on null at C:\\code\\Backend\\aseupan-kitchen\\app\\Http\\Controllers\\AuthController.php:47)
+[stacktrace]
+#0 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(254): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'C:\\\\code\\\\Backend...', 47)
+#1 C:\\code\\Backend\\aseupan-kitchen\\app\\Http\\Controllers\\AuthController.php(47): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Attempt to read...', 'C:\\\\code\\\\Backend...', 47)
+#2 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\AuthController->login(Object(Illuminate\\Http\\Request))
+#3 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('login', Array)
+#4 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(260): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\AuthController), 'login')
+#5 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#6 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(799): Illuminate\\Routing\\Route->run()
+#7 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#8 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#9 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#10 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(159): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(135): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequest(Object(Illuminate\\Http\\Request), Object(Closure), Array)
+#12 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(87): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequestUsingNamedLimiter(Object(Illuminate\\Http\\Request), Object(Closure), 'api', Object(Closure))
+#13 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 'api')
+#14 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(800): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#16 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(777): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#17 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(741): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#18 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(730): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#19 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#20 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(62): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#37 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#38 C:\\code\\Backend\\aseupan-kitchen\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#39 C:\\code\\Backend\\aseupan-kitchen\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\code\\\\Backend...')
+#40 {main}
+"} 

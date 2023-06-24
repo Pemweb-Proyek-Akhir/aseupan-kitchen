@@ -2,9 +2,12 @@
 
 namespace App\Helpers;
 
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Routing\ResponseFactory as RoutingResponseFactory;
+
 class ResponseHelper
 {
-    public static function baseResponse($message, $status, $data = null, $error = null)
+    public static function baseResponse($message, $status, $data = null, $error = null,)
     {
         $response = [
             'message' => $message,
@@ -13,6 +16,6 @@ class ResponseHelper
             'error' => $error,
         ];
 
-        return response()->json($response);
+        return response()->json($response, $status);
     }
 }
