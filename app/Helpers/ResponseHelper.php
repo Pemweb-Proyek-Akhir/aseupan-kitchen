@@ -18,4 +18,12 @@ class ResponseHelper
 
         return response()->json($response, $status);
     }
+
+    public static function err($message)
+    {
+        return response()->json([
+            "message" => $message,
+            'status' => 404
+        ], 404);
+    }
 }
