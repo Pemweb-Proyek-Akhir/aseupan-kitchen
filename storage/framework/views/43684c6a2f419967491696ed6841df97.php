@@ -33,7 +33,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <?php echo e(__("Welcome to Admin\'s Dashboard!")); ?>
+                    <?php echo e(__("Welcome to Admin's Dashboard!")); ?>
 
                 </div>
                 <div class="menu-container">
@@ -41,6 +41,7 @@
                     <a href="<?php echo e(route('admin.create')); ?>" class="menu-button">Create Product</a>
                     <a href="<?php echo e(route('admin.orders')); ?>" class="menu-button">Manage Orders</a>
                     <a href="<?php echo e(route('admin.users')); ?>" class="menu-button">Manage Users</a>
+                    <a href="<?php echo e(route('admin.campaigns')); ?>" class="menu-button">Manage Campaigns</a>
                     <!-- Add more menu items as needed -->
                 </div>
             </div>
