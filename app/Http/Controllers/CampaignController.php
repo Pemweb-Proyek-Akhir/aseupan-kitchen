@@ -51,7 +51,7 @@ class CampaignController extends Controller
                 }
             }
 
-            echo "gaada file";
+            return ResponseHelper::baseResponse("Berhasil membuat campaign", 200, $campaign);
         } catch (Exception $e) {
             return ResponseHelper::err($e->getMessage());
         }
