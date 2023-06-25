@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Campaign;
+use App\Models\BannerCampaign;
 use Illuminate\Http\Request;
 
-
-class CampaignController extends Controller
+class BannerCampaignController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +16,33 @@ class CampaignController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        return response()->json($request);
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Campaign $campaign)
+    public function show(BannerCampaign $bannerCampaign)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(BannerCampaign $bannerCampaign)
     {
         //
     }
@@ -35,7 +50,7 @@ class CampaignController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Campaign $campaign)
+    public function update(Request $request, BannerCampaign $bannerCampaign)
     {
         //
     }
@@ -43,7 +58,7 @@ class CampaignController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Campaign $campaign)
+    public function destroy(BannerCampaign $bannerCampaign)
     {
         //
     }
