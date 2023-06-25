@@ -34,6 +34,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware([JwtMiddleware::class])->group(function () {
     Route::group(['prefix' => 'campaign'], function () {
         Route::post('/', [CampaignController::class, 'store']);
+        Route::get('/', [CampaignController::class, 'show']);
     });
 });
 

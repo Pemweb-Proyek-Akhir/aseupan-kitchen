@@ -9,6 +9,7 @@ use Brick\Math\BigInteger;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CampaignController extends Controller
@@ -59,9 +60,18 @@ class CampaignController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Campaign $campaign)
+    public function show()
     {
-        //
+        try {
+            $campaign = Campaign::banner()->get();
+            return $campaign;
+            // $campaign = Campaign::with('banners')->find(1);
+            // return $campaign;
+            // return $campaign;
+            // return ResponseHelper::baseResponse("Berhasil mendapatkan response", 200, $campaign);
+        } catch (Exception $err) {
+            return $err->getMessage();
+        }
     }
 
     /**
