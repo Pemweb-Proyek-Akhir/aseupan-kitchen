@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BannerCampaign;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 class BannerCampaignController extends Controller
 {
@@ -13,6 +14,22 @@ class BannerCampaignController extends Controller
     public function index()
     {
         //
+    }
+
+    public static function uploadBanner(UploadedFile $file, int $campaign_id)
+    {
+
+        $filename = time() . $file->getClientOriginalName();
+        $file->storeAs('uploads', $filename, 'public');
+
+        $path = '/api/public/images/' . $filename;
+
+        $HOST = $_SERVER['HTTP_HOST'];
+
+        $banner = new BannerCampaign();
+        $banner->campaign_id = $campaign_id;
+        $banner->url = $HOST . $path;
+        $banner->save();
     }
 
     /**

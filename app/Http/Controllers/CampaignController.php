@@ -46,7 +46,7 @@ class CampaignController extends Controller
                 // $fil
 
                 foreach ($files as $file) {
-                    $this->uploadBanner($file, $campaign->id);
+                    BannerCampaignController::uploadBanner($file, $campaign->id);
                 }
             }
 
@@ -54,22 +54,6 @@ class CampaignController extends Controller
         } catch (Exception $e) {
             return ResponseHelper::err($e->getMessage());
         }
-    }
-
-    private function uploadBanner(UploadedFile $file, int $campaign_id)
-    {
-
-        $filename = time() . $file->getClientOriginalName();
-        $file->storeAs('uploads', $filename, 'public');
-
-        $path = '/api/public/images/' . $filename;
-
-        $HOST = $_SERVER['HTTP_HOST'];
-
-        $banner = new BannerCampaign();
-        $banner->campaign_id = $campaign_id;
-        $banner->url = $HOST . $path;
-        $banner->save();
     }
 
     /**
