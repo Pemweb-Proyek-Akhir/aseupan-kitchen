@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('target');
             $table->string('status')->default('ongoing');
+            $table->text("description");
             $table->timestamps();
         });
     }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Helpers\ResponseHelper;
 use App\Models\User;
 use Closure;
 use Exception;
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,27 +22,22 @@ class JwtMiddleware
     public function handle(Request $request, Closure $next)
     {
         $token = $request->bearerToken();
-        return response()->json(['token' => $token]);
 
         if (!$token) {
-            return response()->json(['message' => 'Unauthorized.'], 401);
+            return ResponseHelper::err("You unaothirized to this resource");
         }
 
         try {
-            $decodedToken = JWT::decode($token, env('JWT_SECRET'));
+            $decodedToken = JWT::decode($token, new Key(env('JWT_SECRET'), 'HS256'));
 
             $user = User::find($decodedToken->uid);
 
             if (!$user) {
-                return response()->json(['message' => 'Invalid token.'], 401);
+                return ResponseHelper::baseResponse("Invalid token", 409);
             }
-
-            // Authenticate the user
-            Auth::login($user);
+            return $next($request);
         } catch (Exception $e) {
-            return response()->json(['message' => 'Invalid token.'], 401);
+            return ResponseHelper::err($e->getMessage());
         }
-
-        return $next($request);
     }
 }

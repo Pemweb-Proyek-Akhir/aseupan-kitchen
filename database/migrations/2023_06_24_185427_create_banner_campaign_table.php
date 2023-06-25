@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('banner_campaign', function (Blueprint $table) {
+        Schema::create('banner_campaigns', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('campaign_id');
             $table->string('url');

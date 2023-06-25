@@ -23,7 +23,7 @@ class ResponseHelper
     {
         return response()->json([
             "message" => $message,
-            'status' => 404
-        ], 404);
+            'status' => 401
+        ], 401);
     }
 }
