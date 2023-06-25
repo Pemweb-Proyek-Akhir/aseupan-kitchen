@@ -63,12 +63,31 @@ class CampaignController extends Controller
     public function show()
     {
         try {
-            $campaign = Campaign::banner()->get();
-            return $campaign;
-            // $campaign = Campaign::with('banners')->find(1);
-            // return $campaign;
-            // return $campaign;
-            // return ResponseHelper::baseResponse("Berhasil mendapatkan response", 200, $campaign);
+            $campaigns = DB::select("SELECT c.id, c.name, c.target, c.status, c.description, b.url FROM campaigns c JOIN banner_campaigns b ON c.id = b.campaign_id;");
+
+            $combinedCampaigns = [];
+
+            foreach ($campaigns as $campaign) {
+                $id = $campaign->id;
+
+                if (!array_key_exists($id, $combinedCampaigns)) {
+                    $combinedCampaigns[$id] = [
+                        'id' => $id,
+                        'name' => $campaign->name,
+                        'target' => $campaign->target,
+                        'status' => $campaign->status,
+                        'description' => $campaign->description,
+                        'thumbnail' => [$campaign->url]
+                    ];
+                } else {
+                    $combinedCampaigns[$id]['thumbnail'][] = $campaign->url;
+                }
+            }
+
+            // Convert the combined campaigns array to a sequential array
+            $combinedCampaigns = array_values($combinedCampaigns);
+
+            return $combinedCampaigns;
         } catch (Exception $err) {
             return $err->getMessage();
         }
