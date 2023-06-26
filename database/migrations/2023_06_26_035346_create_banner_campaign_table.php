@@ -13,14 +13,16 @@ class CreateBannerCampaignTable extends Migration
      */
     public function up()
     {
-        Schema::create('banner_campaign', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('campaign_id');
-            $table->string('url');
-            $table->timestamps();
+        if (!Schema::hasTable('banner_campaign')) {
+            Schema::create('banner_campaign', function (Blueprint $table) {
+                $table->integer('id')->primary();
+                $table->integer('campaign_id');
+                $table->string('url');
+                $table->timestamps();
 
-            $table->foreign('campaign_id')->references('id')->on('campaigns');
-        });
+                $table->foreign('campaign_id')->references('id')->on('campaigns');
+            });
+        }
     }
 
     /**
