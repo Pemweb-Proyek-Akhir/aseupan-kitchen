@@ -29,6 +29,11 @@ use App\Http\Controllers\Customer\CustomerDashboardController;
 use App\Http\Controllers\Customer\CustomerCampaignController;
 use App\Http\Controllers\Customer\CustomerOrderController;
 use App\Http\Controllers\Customer\PackageController as CustomerPackageController;
+use App\Http\Controllers\Auth\RegisterController;
+
+// Register
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
 
 // Login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -85,36 +90,19 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
 });
 
 Route::prefix('customer')->name('customer.')->middleware('customer')->group(function () {
-    Route::get('/campaign/{campaign}', [CustomerCampaignController::class, 'show'])->name('campaign.show');
-    Route::get('/campaign/{campaign}/order', [CustomerOrderController::class, 'create'])->name('campaign.order.create');
-    Route::post('/campaign/{campaign}/order', [CustomerOrderController::class, 'store'])->name('campaign.order.store');
+    Route::get('/dashboard', [CustomerDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/campaigns', [CustomerCampaignController::class, 'index'])->name('campaigns.index');
+    Route::get('/campaigns/{campaign}', [CustomerCampaignController::class, 'show'])->name('campaigns.show');
 
-    // Route::get('/campaign/{campaign}/packages/{package}/order', 'Customer\CustomerOrderController@create')->name('orders.create');
-    // Route::post('/campaign/{campaign}/packages/{package}/order', 'Customer\CustomerOrderController@store')->name('orders.store');
-
-    Route::get('/orders/create', [CustomerOrderController::class, 'create'])->name('orders.create');
+    Route::get('/orders/create/{campaignId}/{packageId}', [CustomerOrderController::class, 'create'])->name('orders.create');
     Route::post('/orders', [CustomerOrderController::class, 'store'])->name('orders.store');
-    Route::get('/orders/{id}/edit', [CustomerOrderController::class, 'edit'])->name('orders.edit');
-    Route::put('/orders/{id}', [CustomerOrderController::class, 'update'])->name('orders.update');
-    Route::delete('/orders/{id}', [CustomerOrderController::class, 'destroy'])->name('orders.destroy');
-
-    // Route::get('/campaign/{campaign}/packages/{package}', [CustomerPackageController::class, 'show'])->name('campaign.packages.show');
-
-    // // Rute untuk Campaigns
-    // Route::get('/campaign', [CustomerCampaignController::class, 'index'])->name('campaigns.index');
-    // Route::get('/campaign/{campaign}', [CustomerCampaignController::class, 'show'])->name('campaigns.show');
-
-    // // Rute untuk Orders
-    // Route::get('/orders/create/{campaign}/{package}', [CustomerOrderController::class, 'create'])->name('orders.create');
-    // Route::post('/orders/store', [CustomerOrderController::class, 'store'])->name('orders.store');
-
-    // Route::get('/campaign/{id}', 'Customer\CampaignController@show')->name('campaign.show');
-
-    // Route::get('/campaigns', [CustomerCampaignController::class, 'index'])->name('campaigns.index');
-    // Route::get('/campaigns/{id}', [CustomerCampaignController::class, 'show'])->name('campaigns.show');
-    // Route::get('/campaigns/{campaignId}/package/{packageId}/order', [CustomerCampaignController::class, 'createOrder'])->name('campaigns.createOrder');
-    // Route::post('/orders', [CustomerCampaignController::class, 'storeOrder'])->name('orders.store');
+    Route::get('/orders', [CustomerOrderController::class, 'index'])->name('orders.index');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 // Route::get('/dashboard', function () {

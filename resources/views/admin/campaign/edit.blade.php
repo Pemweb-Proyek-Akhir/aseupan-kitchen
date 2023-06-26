@@ -44,6 +44,15 @@
             <input type="number" name="current" id="current" class="form-control" value="{{ $campaign->current }}" required>
         </div>
 
+        <div class="form-group">
+            <label for="packages">Packages</label>
+            <select name="packages[]" id="packages" class="form-control" multiple required>
+                @foreach ($packages as $package)
+                <option value="{{ $package->id }}" @if ($campaign->packages->contains($package->id)) selected @endif>{{ $package->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <!-- Banner Form -->
         <div class="form-group">
             <label for="banner_urls">Banner URLs:</label>

@@ -2,70 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\ResponseHelper;
-use App\Models\User;
-use Exception;
-use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    //
-    public function register(Request $request)
+    public function showLoginForm()
     {
-        try {
-            $validated = $this->validate($request, [
-                "name" => 'required|max:255',
-                "email" => 'required|email|max:255|unique:users,email',
-                'password' => 'required',
-                'user_type' => 'required|integer|in:0,1',
-            ]);
-
-            $user = new User();
-            $user->name = $validated['name'];
-            $user->email = $validated['email'];
-            $user->user_type = $validated['user_type'];
-            $user->password = Hash::make($validated['password']);
-
-            $user->save();
-
-            return ResponseHelper::baseResponse("Account Success Created", 200, $user, null);
-        } catch (Exception $err) {
-            return ResponseHelper::baseResponse($err->getMessage(), 404);
-        }
+        return view('auth.login');
     }
 
     public function login(Request $request)
     {
-        try {
-            $validated = $this->validate($request, [
-                "email" => "required",
-                'password' => "required"
-            ]);
+        $credentials = $request->only('email', 'password');
 
-
-            $user = User::where('email', $validated['email'])->first();
-
-            if (!$user) {
-                return ResponseHelper::baseResponse("Email not found", 404);
+        if (Auth::attempt($credentials)) {
+            // Login berhasil
+            if (Auth::user()->user_type == 0) {
+                // User customer, arahkan ke customer-dashboard
+                return redirect()->route('customer.dashboard');
+            } elseif (Auth::user()->user_type == 1) {
+                // User admin, arahkan ke admin-dashboard
+                return redirect()->route('admin.dashboard');
             }
-
-
-            if (!Hash::check($validated['password'], $user->password)) {
-                return ResponseHelper::baseResponse("Your password is wrong", 404);
-            }
-
-            $payload = [
-                'iat' => intval(microtime(true)),
-                'exp' => intval(microtime(true)) + (60 * 60 * 1000),
-                'uid' => $user->id
-            ];
-
-            $token = JWT::encode($payload, env("JWT_SECRET"), "HS256");
-            return ResponseHelper::baseResponse("Login success", 200, $token);
-        } catch (Exception $err) {
-            return ResponseHelper::err($err->getMessage());
         }
+
+        // Login gagal
+        return redirect()->route('login')->with('error', 'Invalid credentials');
+    }
+
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }

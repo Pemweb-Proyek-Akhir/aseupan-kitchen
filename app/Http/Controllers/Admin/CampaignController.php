@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BannerCampaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Package;
 
 class CampaignController extends Controller
 {
@@ -37,6 +38,9 @@ class CampaignController extends Controller
             $campaign->current = $request->input('current');
             $campaign->save();
 
+            $packages = Package::all();
+            $campaign->packages()->attach($packages);
+
             DB::commit();
 
             return redirect()->route('admin.campaign.index')->with('success', 'Campaign and Banners added successfully');
@@ -46,11 +50,12 @@ class CampaignController extends Controller
         }
     }
 
-
     public function edit($id)
     {
         $campaign = Campaign::findOrFail($id);
-        return view('admin.campaign.edit', compact('campaign'));
+        $packages = Package::all();
+
+        return view('admin.campaign.edit', compact('campaign', 'packages'));
     }
 
     public function update(Request $request, $id)
@@ -70,7 +75,7 @@ class CampaignController extends Controller
         $bannerUrls = $request->input('banner_urls');
 
         if ($bannerUrls) {
-            $bannerIds = $campaign->banners->pluck('id'); // Mendapatkan ID banner terkait
+            $bannerIds = $campaign->banners->pluck('id');
 
             foreach ($bannerUrls as $index => $bannerUrl) {
                 $bannerId = $bannerIds[$index] ?? null;
@@ -87,6 +92,10 @@ class CampaignController extends Controller
                 }
             }
         }
+
+        // Update packages
+        $packages = $request->input('packages');
+        $campaign->packages()->sync($packages);
 
         return redirect()->route('admin.campaign.index')->with('success', 'Campaign berhasil diperbarui');
     }
