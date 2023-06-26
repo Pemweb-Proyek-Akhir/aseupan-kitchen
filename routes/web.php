@@ -31,6 +31,10 @@ use App\Http\Controllers\Customer\CustomerDashboardController;
 use App\Http\Controllers\Customer\CustomerCampaignController;
 use App\Http\Controllers\Customer\CustomerOrderController;
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/admin/dashboard', function () {
     // Cek apakah pengguna sudah login dan memiliki peran admin
     if (Auth::check() && Auth::user()->user_type === 1) {
@@ -121,7 +125,3 @@ Route::prefix('customer')->name('customer.')->middleware('customer')->group(func
     Route::post('/orders', [CustomerOrderController::class, 'store'])->name('orders.store');
     Route::get('/orders', [CustomerOrderController::class, 'index'])->name('orders.index');
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -25,4 +25,11 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    // Menampilkan halaman Dashboard setelah login
+    public function dashboard()
+    {
+        // Lakukan logika untuk menampilkan data atau tampilan yang relevan dengan halaman Dashboard
+        return view('dashboard');
+    }
 }
