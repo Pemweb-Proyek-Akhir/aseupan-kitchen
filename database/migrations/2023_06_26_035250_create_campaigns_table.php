@@ -14,7 +14,7 @@ class CreateCampaignsTable extends Migration
     public function up()
     {
         Schema::create('campaigns', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->primary();
             $table->string('name');
             $table->text('description');
             $table->integer('target');

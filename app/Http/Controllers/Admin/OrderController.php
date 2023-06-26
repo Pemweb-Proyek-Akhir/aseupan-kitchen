@@ -60,44 +60,67 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = Order::findOrFail($id);
-        $users = User::all();
-        $campaigns = Campaign::all();
-        $packages = Package::all();
-
-        return view('admin.orders.edit', compact('order', 'users', 'campaigns', 'packages'));
+        return view('admin.orders.edit', compact('order'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'user_id' => 'required',
-            'campaign_id' => 'required',
-            'package_id' => 'required',
             'name' => 'required',
             'address' => 'required',
             'phone_number' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
-            'total' => 'required',
-            'payment_method' => 'required',
         ]);
 
         $order = Order::findOrFail($id);
-        // $order->update($request->all());
-        $order->user_id = $request->input('user_id');
-        $order->campaign_id = $request->input('campaign_id');
-        $order->package_id = $request->input('package_id');
         $order->name = $request->input('name');
         $order->address = $request->input('address');
         $order->phone_number = $request->input('phone_number');
-        $order->price = $request->input('price');
-        $order->quantity = $request->input('quantity');
-        $order->total = $request->input('price') * $request->input('quantity');
-        $order->payment_method = $request->input('payment_method');
         $order->save();
 
         return redirect()->route('admin.orders.index')->with('success', 'Order updated successfully');
     }
+
+    // public function edit($id)
+    // {
+    //     $order = Order::findOrFail($id);
+    //     $users = User::all();
+    //     $campaigns = Campaign::all();
+    //     $packages = Package::all();
+
+    //     return view('admin.orders.edit', compact('order', 'users', 'campaigns', 'packages'));
+    // }
+
+    // public function update(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'user_id' => 'required',
+    //         'campaign_id' => 'required',
+    //         'package_id' => 'required',
+    //         'name' => 'required',
+    //         'address' => 'required',
+    //         'phone_number' => 'required',
+    //         'price' => 'required',
+    //         'quantity' => 'required',
+    //         'total' => 'required',
+    //         'payment_method' => 'required',
+    //     ]);
+
+    //     $order = Order::findOrFail($id);
+    //     $order->user_id = $request->input('user_id');
+    //     $order->campaign_id = $request->input('campaign_id');
+    //     $order->package_id = $request->input('package_id');
+    //     $order->name = $request->input('name');
+    //     $order->address = $request->input('address');
+    //     $order->phone_number = $request->input('phone_number');
+    //     $order->price = $request->input('price');
+    //     $order->quantity = $request->input('quantity');
+    //     $order->total = $request->input('total');
+    //     $order->payment_method = $request->input('payment_method');
+    //     $order->save();
+
+    //     return redirect()->route('admin.orders.index')->with('success', 'Order updated successfully');
+    // }
+
 
     public function destroy($id)
     {

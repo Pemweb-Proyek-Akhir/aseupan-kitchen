@@ -29,28 +29,30 @@ class CustomerOrderController extends Controller
         $validatedData = $request->validate([
             'campaign_id' => 'required',
             'package_id' => 'required',
-            'quantity' => 'required|integer|min:1',
-            'payment_method' => 'required',
             'name' => 'required',
             'address' => 'required',
             'phone_number' => 'required',
+            'quantity' => 'required|integer|min:1',
+            'payment_method' => 'required',
         ]);
 
         // Hitung total berdasarkan paket yang dipilih
         $package = Package::findOrFail($validatedData['package_id']);
-        $total = $package->price * $validatedData['quantity'];
+        $price = $package->price;
+        $total = $price * $validatedData['quantity'];
 
         // Buat pesanan baru
         $order = new Order;
+        $order->user_id = auth()->user()->id;
         $order->campaign_id = $validatedData['campaign_id'];
         $order->package_id = $validatedData['package_id'];
-        $order->quantity = $validatedData['quantity'];
-        $order->total = $total;
-        $order->payment_method = $validatedData['payment_method'];
         $order->name = $validatedData['name'];
         $order->address = $validatedData['address'];
         $order->phone_number = $validatedData['phone_number'];
-        $order->user_id = auth()->user()->id;
+        $order->quantity = $validatedData['quantity'];
+        $order->price = $price;
+        $order->total = $total;
+        $order->payment_method = $validatedData['payment_method'];
         $order->save();
 
         // Perbarui current pada kampanye

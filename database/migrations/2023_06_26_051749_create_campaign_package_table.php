@@ -9,8 +9,8 @@ class CreateCampaignPackageTable extends Migration
     public function up()
     {
         Schema::create('campaign_package', function (Blueprint $table) {
-            $table->unsignedBigInteger('campaign_id');
-            $table->unsignedBigInteger('package_id');
+            $table->integer('campaign_id');
+            $table->integer('package_id');
 
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');

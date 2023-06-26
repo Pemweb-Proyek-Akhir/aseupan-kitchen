@@ -27,6 +27,6 @@ class Campaign extends Model
 
     public function packages()
     {
-        return $this->belongsToMany(Package::class);
+        return $this->belongsToMany(Package::class, 'campaign_package');
     }
 }

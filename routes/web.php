@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\GreetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,16 +18,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/hello/{name}', [GreetController::class, 'greet']);
+Route::view('/hello', 'greet');
+
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\CampaignController as AdminCampaignController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\PackageController as AdminPackageController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Customer\CustomerDashboardController;
 use App\Http\Controllers\Customer\CustomerCampaignController;
 use App\Http\Controllers\Customer\CustomerOrderController;
-use App\Http\Controllers\Customer\PackageController as CustomerPackageController;
-use App\Http\Controllers\Auth\RegisterController;
+
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Register
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -43,17 +48,22 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/admin/dashboard', function () {
-    // Cek apakah pengguna memiliki user_type = 1
+    // Cek apakah pengguna sudah login dan memiliki peran admin
     if (Auth::check() && Auth::user()->user_type === 1) {
         return view('admin.dashboard');
     } else {
-        return view('customer.dashboard');
+        return redirect()->route('customer.dashboard');
     }
-})->name('admin.dashboard');
+})->middleware(['auth'])->name('admin.dashboard');
 
-// Route::get('/customer/dashboard', function () {
-//     return view('customer.dashboard');
-// })->middleware('customer')->name('customer.dashboard');
+Route::get('/customer/dashboard', function () {
+    // Cek apakah pengguna sudah login dan memiliki peran customer
+    if (Auth::check() && Auth::user()->user_type === 0) {
+        return view('customer.dashboard');
+    } else {
+        return redirect()->route('admin.dashboard');
+    }
+})->middleware(['auth'])->name('customer.dashboard');
 
 Route::get('/customer/dashboard', [CustomerDashboardController::class, 'index'])->middleware('customer')->name('customer.dashboard');
 
@@ -98,42 +108,3 @@ Route::prefix('customer')->name('customer.')->middleware('customer')->group(func
     Route::post('/orders', [CustomerOrderController::class, 'store'])->name('orders.store');
     Route::get('/orders', [CustomerOrderController::class, 'index'])->name('orders.index');
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
-// Route::get('/dashboard', function () {
-//     $userType = Auth::user()->user_type;
-
-//     if ($userType === 0) {
-//         return view('dashboard');
-//     } elseif ($userType === 1) {
-//         return view('dashboardAdmin');
-//     }
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-// use App\Http\Controllers\AdminController;
-
-// Route::prefix('admin')->group(function () {
-//     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-//     Route::get('/users', [AdminController::class, 'showUsers'])->name('admin.users');
-//     Route::get('/orders', [AdminController::class, 'showOrders'])->name('admin.orders');
-//     Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
-//     Route::post('/store', [AdminController::class, 'store'])->name('admin.store');
-//     Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
-//     Route::put('/update/{id}', [AdminController::class, 'update'])->name('admin.update');
-//     Route::delete('/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
-// });
-
-
-require __DIR__ . '/auth.php';

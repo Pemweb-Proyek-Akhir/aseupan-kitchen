@@ -1,1 +1,0 @@
-<?php /**PATH C:\xampp\htdocs\aseupan-kitchen\resources\views/admin/create.blade.php ENDPATH**/ ?>

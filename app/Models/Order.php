@@ -16,11 +16,12 @@ class Order extends Model
         'name',
         'address',
         'phone_number',
-        'quantity',
         'price',
+        'quantity',
         'total',
         'payment_method',
     ];
+
 
     public function campaign()
     {
