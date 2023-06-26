@@ -2,15 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Campaign extends Model
 {
-    protected $fillable = ['name', 'banner', 'status'];
+    use HasFactory;
 
-    public function products()
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    public $timestamps = true;
+
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+    protected $fillable = [
+        'name', 'description', 'target', 'status', 'current'
+    ];
+
+    public function banners()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->hasMany(BannerCampaign::class, 'campaign_id');
+    }
+
+    public function packages()
+    {
+        return $this->belongsToMany(Package::class);
     }
 }

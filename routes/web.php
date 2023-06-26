@@ -20,35 +20,120 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $userType = Auth::user()->user_type;
+use App\Http\Controllers\Admin\CampaignController as AdminCampaignController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\PackageController as AdminPackageController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Customer\CustomerDashboardController;
+use App\Http\Controllers\Customer\CustomerCampaignController;
+use App\Http\Controllers\Customer\CustomerOrderController;
+use App\Http\Controllers\Customer\PackageController as CustomerPackageController;
+use App\Http\Controllers\Auth\RegisterController;
 
-    if ($userType === 0) {
-        return view('dashboard');
-    } elseif ($userType === 1) {
-        return view('dashboardAdmin');
+// Register
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
+// Login
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+// Logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/admin/dashboard', function () {
+    // Cek apakah pengguna memiliki user_type = 1
+    if (Auth::check() && Auth::user()->user_type === 1) {
+        return view('admin.dashboard');
+    } else {
+        return view('customer.dashboard');
     }
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('admin.dashboard');
 
+// Route::get('/customer/dashboard', function () {
+//     return view('customer.dashboard');
+// })->middleware('customer')->name('customer.dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::get('/customer/dashboard', [CustomerDashboardController::class, 'index'])->middleware('customer')->name('customer.dashboard');
+
+Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
+    Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [AdminUserController::class, 'create'])->name('users.create');
+    Route::post('/users', [AdminUserController::class, 'store'])->name('users.store');
+    Route::get('/users/{id}/edit', [AdminUserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}', [AdminUserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])->name('users.destroy');
+
+    Route::get('/campaign', [AdminCampaignController::class, 'index'])->name('campaign.index');
+    Route::get('/campaign/create', [AdminCampaignController::class, 'create'])->name('campaign.create');
+    Route::post('/campaign/store', [AdminCampaignController::class, 'store'])->name('campaign.store');
+    Route::get('/campaign/{id}/edit', [AdminCampaignController::class, 'edit'])->name('campaign.edit');
+    Route::put('/campaign/{id}', [AdminCampaignController::class, 'update'])->name('campaign.update');
+    Route::delete('/campaign/{id}', [AdminCampaignController::class, 'destroy'])->name('campaign.destroy');
+
+    Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/create', [AdminOrderController::class, 'create'])->name('orders.create');
+    Route::post('/orders', [AdminOrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/{id}/edit', [AdminOrderController::class, 'edit'])->name('orders.edit');
+    Route::put('/orders/{id}', [AdminOrderController::class, 'update'])->name('orders.update');
+    Route::delete('/orders/{id}', [AdminOrderController::class, 'destroy'])->name('orders.destroy');
+    Route::get('/orders/{id}', [AdminOrderController::class, 'show'])->name('orders.show');
+
+    Route::get('/packages', [AdminPackageController::class, 'index'])->name('packages.index');
+    Route::get('/packages/create', [AdminPackageController::class, 'create'])->name('packages.create');
+    Route::post('/packages', [AdminPackageController::class, 'store'])->name('packages.store');
+    Route::get('/packages/{package}', [AdminPackageController::class, 'show'])->name('packages.show');
+    Route::get('/packages/{package}/edit', [AdminPackageController::class, 'edit'])->name('packages.edit');
+    Route::put('/packages/{package}', [AdminPackageController::class, 'update'])->name('packages.update');
+    Route::delete('/packages/{package}', [AdminPackageController::class, 'destroy'])->name('packages.destroy');
 });
 
-use App\Http\Controllers\AdminController;
+Route::prefix('customer')->name('customer.')->middleware('customer')->group(function () {
+    Route::get('/dashboard', [CustomerDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/campaigns', [CustomerCampaignController::class, 'index'])->name('campaigns.index');
+    Route::get('/campaigns/{campaign}', [CustomerCampaignController::class, 'show'])->name('campaigns.show');
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/users', [AdminController::class, 'showUsers'])->name('admin.users');
-    Route::get('/orders', [AdminController::class, 'showOrders'])->name('admin.orders');
-    Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
-    Route::post('/store', [AdminController::class, 'store'])->name('admin.store');
-    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
-    Route::put('/update/{id}', [AdminController::class, 'update'])->name('admin.update');
-    Route::delete('/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::get('/orders/create/{campaignId}/{packageId}', [CustomerOrderController::class, 'create'])->name('orders.create');
+    Route::post('/orders', [CustomerOrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders', [CustomerOrderController::class, 'index'])->name('orders.index');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+// Route::get('/dashboard', function () {
+//     $userType = Auth::user()->user_type;
+
+//     if ($userType === 0) {
+//         return view('dashboard');
+//     } elseif ($userType === 1) {
+//         return view('dashboardAdmin');
+//     }
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+
+// use App\Http\Controllers\AdminController;
+
+// Route::prefix('admin')->group(function () {
+//     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+//     Route::get('/users', [AdminController::class, 'showUsers'])->name('admin.users');
+//     Route::get('/orders', [AdminController::class, 'showOrders'])->name('admin.orders');
+//     Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
+//     Route::post('/store', [AdminController::class, 'store'])->name('admin.store');
+//     Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+//     Route::put('/update/{id}', [AdminController::class, 'update'])->name('admin.update');
+//     Route::delete('/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+// });
 
 
 require __DIR__ . '/auth.php';

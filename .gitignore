@@ -5,3 +5,5 @@ Homestead.yaml
 .phpunit.result.cache
 node_modules
 vendor
+storage/app
+storage/logs
