@@ -25,7 +25,7 @@ So, in order to fulfill SDGs Points of number 2: Zero Hunger and number 3: Good 
 
 aseupan has potential in reducing food waste, decreasing inequality in access to food, and raising public awareness of the importance of sustainable food systems
 
-To know more about us, you can visit us [here](here-nya hyperlink ke https://bit.ly/aseupan)
+To know more about us, you can visit us [here](https://bit.ly/aseupan)
 
 ## About Laravel
 
