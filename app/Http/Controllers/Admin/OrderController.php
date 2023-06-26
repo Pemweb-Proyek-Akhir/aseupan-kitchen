@@ -83,7 +83,18 @@ class OrderController extends Controller
         ]);
 
         $order = Order::findOrFail($id);
-        $order->update($request->all());
+        // $order->update($request->all());
+        $order->user_id = $request->input('user_id');
+        $order->campaign_id = $request->input('campaign_id');
+        $order->package_id = $request->input('package_id');
+        $order->name = $request->input('name');
+        $order->address = $request->input('address');
+        $order->phone_number = $request->input('phone_number');
+        $order->price = $request->input('price');
+        $order->quantity = $request->input('quantity');
+        $order->total = $request->input('price') * $request->input('quantity');
+        $order->payment_method = $request->input('payment_method');
+        $order->save();
 
         return redirect()->route('admin.orders.index')->with('success', 'Order updated successfully');
     }
