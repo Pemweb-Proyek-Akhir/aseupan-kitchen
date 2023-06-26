@@ -31,9 +31,23 @@ use App\Http\Controllers\Customer\CustomerDashboardController;
 use App\Http\Controllers\Customer\CustomerCampaignController;
 use App\Http\Controllers\Customer\CustomerOrderController;
 
-Auth::routes();
+Route::get('/admin/dashboard', function () {
+    // Cek apakah pengguna sudah login dan memiliki peran admin
+    if (Auth::check() && Auth::user()->user_type === 1) {
+        return view('admin.dashboard');
+    } else {
+        return redirect()->route('customer.dashboard');
+    }
+})->middleware(['auth'])->name('admin.dashboard');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/customer/dashboard', function () {
+    // Cek apakah pengguna sudah login dan memiliki peran customer
+    if (Auth::check() && Auth::user()->user_type === 0) {
+        return view('customer.dashboard');
+    } else {
+        return redirect()->route('admin.dashboard');
+    }
+})->middleware(['auth'])->name('customer.dashboard');
 
 // Register
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -107,3 +121,7 @@ Route::prefix('customer')->name('customer.')->middleware('customer')->group(func
     Route::post('/orders', [CustomerOrderController::class, 'store'])->name('orders.store');
     Route::get('/orders', [CustomerOrderController::class, 'index'])->name('orders.index');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
