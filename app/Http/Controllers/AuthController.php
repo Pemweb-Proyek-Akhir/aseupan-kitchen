@@ -22,8 +22,14 @@ class AuthController extends Controller
 
         // Melakukan proses autentikasi
         if (Auth::attempt($credentials)) {
-            // Jika autentikasi berhasil, arahkan ke halaman dashboard
-            return redirect()->route('dashboard');
+            // Jika autentikasi berhasil
+            if (Auth::user()->user_type == 0) {
+                // Jika user_type = 0 (customer), arahkan ke halaman customer dashboard
+                return redirect()->route('customer.dashboard');
+            } elseif (Auth::user()->user_type == 1) {
+                // Jika user_type = 1 (admin), arahkan ke halaman admin dashboard
+                return redirect()->route('admin.dashboard');
+            }
         } else {
             // Jika autentikasi gagal, kembali ke halaman login dengan pesan error
             return redirect()->route('login')->with('error', 'Email atau password salah.');
