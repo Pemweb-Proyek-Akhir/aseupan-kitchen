@@ -15,7 +15,7 @@ class CreateBannerCampaignTable extends Migration
     {
         if (!Schema::hasTable('banner_campaign')) {
             Schema::create('banner_campaign', function (Blueprint $table) {
-                $table->integer('id')->primary();
+                $table->integer('id')->autoIncrement();
                 $table->integer('campaign_id');
                 $table->string('url');
                 $table->timestamps();

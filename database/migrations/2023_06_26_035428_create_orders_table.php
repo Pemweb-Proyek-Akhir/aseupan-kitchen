@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         if (!Schema::hasTable('orders')) {
             Schema::create('orders', function (Blueprint $table) {
-                $table->integer('id')->primary();
+                $table->integer('id')->autoIncrement();
                 $table->integer('user_id');
                 $table->integer('campaign_id');
                 $table->integer('package_id');

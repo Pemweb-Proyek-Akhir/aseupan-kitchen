@@ -21,7 +21,10 @@ class PackageController extends Controller
 
     public function store(Request $request)
     {
+        $newId = Package::max('id') + 1;
+
         $data = $request->validate([
+            'id' => $newId,
             'name' => 'required',
             'price' => 'required|numeric',
         ]);
