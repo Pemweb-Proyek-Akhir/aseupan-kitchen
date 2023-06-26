@@ -6,3 +6,4 @@ Homestead.yaml
 node_modules
 vendor
 storage/app
+storage/logs
