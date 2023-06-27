@@ -3,10 +3,12 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Available Campaigns</h1>
-<ul>
-    @foreach ($campaigns as $campaign)
-    <li><a href="{{ route('customer.campaigns.show', $campaign) }}">{{ $campaign->name }}</a></li>
-    @endforeach
-</ul>
+<div class="container">
+    <h1>Available Campaigns</h1>
+    <ul>
+        @foreach ($campaigns as $campaign)
+        <li><a href="{{ route('customer.campaigns.show', $campaign) }}">{{ $campaign->name }}</a></li>
+        @endforeach
+    </ul>
+</div>
 @endsection
